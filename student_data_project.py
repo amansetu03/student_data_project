@@ -153,5 +153,5 @@ if __name__ == "__main__":
 
         else:
             print("Invalid choice. Please try again.")
-
-    print("Program ended.")
+    print("Program by Aman Kumar Sharma")
+    print(" program ended, thank you")
