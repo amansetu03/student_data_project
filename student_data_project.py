@@ -37,18 +37,50 @@ class Method:
         students.append(student)
         self.save_students(students)
         return student
-
+    
     def display_students(self, students):
         if not students:
             print("No records found.")
             return
-        print('student data'.center(100,"-"))
-        header=["Name", "Roll NO", "Email", "Marks1", "Marks2", "Marks3", "Marks4", "Marks5"]
-        data=[]
-        for i in students:
-            row = [i.name, i.roll, i.email] + i.marks
-            data.append(row)
-        print(tabulate(data, headers=header, tablefmt="grid"))
+
+        print('Student data'.center(100, "-"))  
+        header = ["Name", "Roll NO", "Email", "Marks1", "Marks2", "Marks3", "Marks4", "Marks5"]
+
+        # Find maximum lengths for each column to align the data
+        max_lengths = [len(header[i]) for i in range(len(header))]
+        for student in students:
+            max_lengths[0] = max(max_lengths[0], len(student.name))
+            max_lengths[1] = max(max_lengths[1], len(str(student.roll)))
+            max_lengths[2] = max(max_lengths[2], len(student.email))
+            for i in range(len(student.marks)):
+                max_lengths[i + 3] = max(max_lengths[i + 3], len(str(student.marks[i])))
+
+        # Print headers
+        for i in range(len(header)):
+            print(header[i].ljust(max_lengths[i] + 2), end="")
+        print()
+
+        # Print data
+        for student in students:
+            print(student.name.ljust(max_lengths[0] + 2), end="")
+            print(str(student.roll).ljust(max_lengths[1] + 2), end="")
+            print(student.email.ljust(max_lengths[2] + 2), end="")
+            for i in range(len(student.marks)):
+                print(str(student.marks[i]).ljust(max_lengths[i + 3] + 2), end="")
+            print()
+
+
+    # def display_students(self, students):
+    #     if not students:
+    #         print("No records found.")
+    #         return
+    #     print('student data'.center(100,"-"))
+    #     header=["Name", "Roll NO", "Email", "Marks1", "Marks2", "Marks3", "Marks4", "Marks5"]
+    #     data=[]
+    #     for i in students:
+    #         row = [i.name, i.roll, i.email] + i.marks
+    #         data.append(row)
+    #     print(tabulate(data, headers=header, tablefmt="grid"))
         
     def search_student(self, students, roll):
         for i in students:
@@ -100,7 +132,7 @@ class Method:
                     email = data[2]
                     marks = [float(mark) for mark in data[3:]]
                     student = Student(name, roll,email, marks)
-                    students.append(student)
+                    students.append(student)    
         except FileNotFoundError:
             print("file not found")
         return students
