@@ -2,3 +2,4 @@ Aman,1,aman.setu.083@gmail.com,96.0,98.0,97.0,95.0,96.0
 rachit,2,rachit@gmail.com,96.0,96.0,98.0,95.0,94.0
 disha,3,disha@gmail.com,95.0,96.0,97.0,98.0,95.0
 kamini,4,kamini@gmail.com,96.0,95.0,89.0,45.0,25.0
+w,w,w,3.0,3.0,3.0,3.0,3.0
